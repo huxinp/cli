@@ -58,7 +58,7 @@ program
   .version('0.1.0', '-V, -v, --version', '脚手架工具版本信息')
 
 program
-  .command('init <project>')
+  .command('init <project-name>')
   .description('初始化项目模板')
   .action((projectName) => {
     inquirer.prompt([{
@@ -122,7 +122,7 @@ program
           downloadSpinner.succeed();
           const initSpinner = ora('初始化模板...').start();
           try {
-            const packagePath = path.resolve(__dirname, `${projectName}/package.json`);
+            const packagePath = `${projectName}/package.json`;
             const packageContent = fs.readFileSync(packagePath, 'utf-8');
             const packageResult = handlebars.compile(packageContent)({ ...answers, name: projectName });
             fs.writeFileSync(packagePath, packageResult);
