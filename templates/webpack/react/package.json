@@ -1,12 +1,46 @@
 {
-  "name": "{{ name }}",
+  "name": "cli-tpl-webpack-react",
   "version": "1.0.0",
-  "description": "{{ description }}",
+  "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "cross-env BUILD_TYPE=test webpack serve --config ./build/webpack.config.dev.js --progress",
+    "start:fat": "",
+    "start:uat": "",
+    "start:prod": "",
+    "build:fat": "",
+    "build:uat": "",
+    "build:prod": "",
+    "analyzer": "",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "{{ author }}",
-  "license": "ISC"
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/runtime": "^7.17.9",
+    "autoprefixer": "^10.4.7",
+    "babel-loader": "^8.2.5",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "postcss": "^8.4.13",
+    "postcss-loader": "^6.2.1",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0",
+    "webpack-merge": "^5.8.0"
+  }
 }
