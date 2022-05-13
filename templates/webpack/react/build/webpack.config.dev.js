@@ -21,9 +21,6 @@ module.exports = merge(baseConf, {
   optimization: {
     nodeEnv: 'development',
   },
-  // performance: {
-  //   hints: 'warning',
-  // },
   devServer: {
     // client: {
     //   // progress: true,

@@ -5,7 +5,6 @@ const download = require('download-git-repo');
 const fs = require('fs');
 const fse = require('fs-extra');
 const path = require('path');
-const handlebars = require('handlebars');
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 const ora = require('ora');
@@ -49,7 +48,10 @@ const downloadTpl = (templateName, projectName, callback) => {
     if (fs.existsSync(projectName)) {
       return callback(new Error('文件或文件夹已存在'));
     }
-    fse.copy(templatePath, projectPath, callback)
+    function filter(src, dest) {
+      return !/node_modules/.test(src) && !/dist/.test(src) && !/package-lock/.test(src);
+    }
+    fse.copy(templatePath, projectPath, { filter }, callback)
   }
   return copyFromLocal(templateName.split(' '));
 }
@@ -124,8 +126,11 @@ program
           try {
             const packagePath = `${projectName}/package.json`;
             const packageContent = fs.readFileSync(packagePath, 'utf-8');
-            const packageResult = handlebars.compile(packageContent)({ ...answers, name: projectName });
-            fs.writeFileSync(packagePath, packageResult);
+            const packageJson = JSON.parse(packageContent);
+            packageJson.name = projectName;
+            packageJson.description = answers.description || "";
+            packageJson.author = answers.author;
+            fs.writeFileSync(packagePath, JSON.stringify(packageJson, null, 2));
             initSpinner.succeed();
           } catch(err) {
             // console.log(err)

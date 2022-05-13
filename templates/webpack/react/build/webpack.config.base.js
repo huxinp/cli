@@ -13,6 +13,7 @@ module.exports = {
   output: {
     filename: '[name].[contenthash:8].js',
     path: BUILD_OUTPUT_DIR,
+    clean: true,
   },
   resolve: {
     extensions: ['.js', '.jsx', '.less', '.css'],
