@@ -22,7 +22,14 @@ module.exports = {
           esModule: false,
         }
       },
-      'css-loader',
+      {
+        loader: 'css-loader',
+        options: {
+          modules: {
+						localIdentName: '[local]_[hash:base64:4]',
+          }
+        }
+      },
       'postcss-loader',
       'less-loader',
     ]

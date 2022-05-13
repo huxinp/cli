@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import './app.css'
+import styles from './app.css';
 
 createRoot(document.getElementById('root'))
-  .render(<div className='main'>React</div>)
+  .render(<div className={`${styles.main} main3`}>React</div>)
